@@ -5,31 +5,29 @@
     	<meta name="description" content="This is where your description goes">
     	<meta name="keywords" content="one, two, three">
 
-		<title>NPS Passport Finder</title>
+		<title>KBYG</title>
 
 		<!-- external CSS link -->
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-
-		<div class="logo">
-			<img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/US-NationalParkService-Logo.svg" alt="">
-		</div>
-
 		<section class="userInput">
-			<h1>U.S. National Park Service<br>Passport Stamp Finder</h1>
+			<h1>Know Before You Go: Movie Info</h1>
+			<h2>What movie are you interested in?</h2>
 			<form action="">
-				<input class="searchBar" type="text" name="" value="yose">
-				<button class="searchBar" type="button" name="button">Get Locations</button>
+				<input class="searchBar" type="text" name="" value="">
+				<button class="searchBar" type="button" name="button">Search</button>
 			</form>
 		</section>
 
 		<section class="display">
-			<h2>How many passport stamp locations?</h2>
-			<span id = "numOfLocations"></span>
-			<h2>Where to find them:</h3>
-			<ul class="location"></ul>
+			<table id="movie-table">
+				<tr>
+					<th>Titles</th>
+					<th></th>
+				</tr>
+			</table>
 		</section>	
 
 		<script type="text/javascript" src="js/main.js"></script>

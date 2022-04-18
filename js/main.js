@@ -3,49 +3,68 @@ document.querySelector('button').addEventListener('click', getFetch)
 
 function getFetch(){
 
-  const natPark = document.querySelector('input').value
-  const url = `https://developer.nps.gov/api/v1/passportstamplocations?parkCode=${natPark}&api_key=9bf5nYIbcP2CTqtkxG4pKnjp81cGLl94FS5gtu3E`
-  
-  // List of National Park by State Code
-  // const state = document.querySelector('input').value
-  // console.log(state)
-  // const url = `https://developer.nps.gov/api/v1/parks?stateCode=${state}&api_key=9bf5nYIbcP2CTqtkxG4pKnjp81cGLl94FS5gtu3E`
+  const movie = document.querySelector('input').value
+  const url = `https://imdb-api.com/en/API/SearchMovie/k_3k414l0w/${movie}`
 
   fetch(url)
       .then(res => res.json()) // parse response as JSON
       .then(data => {
+        console.log(data.results)
 
-        document.querySelector('#numOfLocations').innerText = data.data.length
+        const item = new Moviesearchresults(data)
+        item.showInfo()
 
-         // List of National Park by State Code
-        // document.querySelector('#numOfLocations').innerText = data.data.filter( a => a.designation === 'National Park').length
-
-        // data.data.forEach( obj => {
+        // const fragment = document.createDocumentFragment();
+        // data.results.forEach( obj => {
         //   const li = document.createElement('li')
-        //   li.textContent = obj.label
-        //   document.querySelector('ul.location').appendChild(li)
-        // })
-
-        const fragment = document.createDocumentFragment();
-        data.data.forEach( obj => {
-          const li = document.createElement('li')
-          li.textContent = obj.label
-          fragment.appendChild(li);
-        });
-        document.querySelector('ul.location').replaceChildren(fragment);
-        
-        // List of National Park by State Code
-        // data.data.filter( a => a.designation === 'National Park').forEach( obj => {
-        //   const li = document.createElement('li')
-        //   li.textContent = obj.fullName
-        //   console.log(obj.fullName)
-        //   document.querySelector('ul.location').appendChild(li)
-        // })
+        //   const img = document.createElement('img')
+        //   li.textContent = obj.title
+        //   img.src = obj.image
+        //   fragment.appendChild(li);
+        //   fragment.appendChild(img)
+        // });
+        // document.querySelector('ul.location').replaceChildren(fragment);
 
       })
       .catch(err => {
           console.log(`error ${err}`)
       });
+
+}
+
+class Moviesearchresults {
+  constructor(movieData) { // I am passing in data
+    this.results = movieData.results
+  }
+
+  // showTitle() {
+  //   document.getElementById('product-img').src = this.image
+  //   document.getElementById('product-name').innerText = this.name
+  // }
+
+  showInfo() {
+    let tableRef = document.getElementById('movie-table')
+
+    //No i++ because you are deleting the row so i is always the next row
+    for( let i = 1; i < tableRef.rows.length;) { 
+      tableRef.deleteRow(i);
+    }
+
+    // if(!(this.title == null)){
+      for(let key in this.results) {
+        let newRow = tableRef.insertRow(-1)
+        let newImageCell = newRow.insertCell(0)
+        let newTitleCell = newRow.insertCell(1)
+        let newImg = document.createElement('img')
+        newImg.src = this.results[key].image
+        let newTText = document.createTextNode(this.results[key].title)
+        // let vegStatus = this.ingredients[key].vegetarian == null ? 'unknown' : this.ingredients[key].vegetarian
+        // let newVText = document.createTextNode(vegStatus)
+        newImageCell.appendChild(newImg)
+        newTitleCell.appendChild(newTText) 
+      } 
+    // }
+  }
 
 }
 
