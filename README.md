@@ -1,4 +1,4 @@
-<h1 align="center">National Parks Service: Passport Stamp Finder | <a href="https://npsstampfinder.netlify.app/">Visit here!</a></h1>
+<h1 align="center">NPS: Passport Stamp Finder | <a href="https://npsstampfinder.netlify.app/">Visit here!</a></h1>
 <div align="center">
   <img src="https://user-images.githubusercontent.com/93153059/168644155-bac68013-3b5d-416c-a135-6b39ce1bed4f.png" width="80%" />
 </div>
